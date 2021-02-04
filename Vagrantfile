@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
       glassfishdir=/opt/glassfish4
       wget https://download.oracle.com/glassfish/4.1.1/release/glassfish-4.1.1-web.zip -O glassfish-4.1.1-web.zip 2>/dev/null
       unzip glassfish-4.1.1-web.zip -d /opt 1>/dev/null
-      useradd glassfish -d /home/glassfish -m
+      useradd glassfish -m
       chown -R glassfish:glassfish $glassfishdir
       su - glassfish
       cd $glassfishdir/glassfish/bin
