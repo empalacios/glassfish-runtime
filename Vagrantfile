@@ -15,12 +15,7 @@ Vagrant.configure("2") do |config|
     apt-get install -y apache2
 
     # java
-      cp /vagrant/jdk-8u231-linux-x64.tar.gz /opt
-      cd /opt
-      tar zxvf jdk-8u231-linux-x64.tar.gz 1>/dev/null
-      ln -s /opt/jdk1.8.0_231/bin/java /usr/bin/java
-      ln -s /opt/jdk1.8.0_231/bin/javac /usr/bin/javac
-      rm jdk-8u231-linux-x64.tar.gz
+      apt-get install -y openjdk-8-jdk-headless
 
     # configurando apache para ser usado como proxy
       a2dissite 000-default
@@ -31,7 +26,8 @@ Vagrant.configure("2") do |config|
 
     # glassfish
       glassfishdir=/opt/glassfish4
-      unzip /vagrant/glassfish-4.1.1-web.zip -d /opt 1>/dev/null
+      wget https://download.oracle.com/glassfish/4.1.1/release/glassfish-4.1.1-web.zip -O glassfish-4.1.1-web.zip 2>/dev/null
+      unzip glassfish-4.1.1-web.zip -d /opt 1>/dev/null
       useradd glassfish -m
       chown -R glassfish:glassfish $glassfishdir
       su - glassfish
