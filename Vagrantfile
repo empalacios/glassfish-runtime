@@ -3,9 +3,7 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "debian/contrib-stretch64"
 
-  #config.vm.network "private_network", ip: "192.168.56.5"
-  config.vm.network "forwarded_port", guest:80,   host:8081
-  config.vm.network "forwarded_port", guest:8080, host:8082
+  config.vm.network "private_network", ip: "192.168.56.5"
   config.vm.network "forwarded_port", guest:4848, host:4848
 
   config.vm.provision "shell", inline: <<-SHELL
@@ -27,7 +25,7 @@ Vagrant.configure("2") do |config|
     # glassfish
       glassfishdir=/opt/glassfish4
       wget https://download.oracle.com/glassfish/4.1.1/release/glassfish-4.1.1-web.zip -O glassfish-4.1.1-web.zip 2>/dev/null
-      unzip glassfish-4.1.1-web.zip -d /opt 1>/dev/null
+      unzip glassfish-4.1.1-web.zip -d /opt >/dev/null
       useradd glassfish -m
       chown -R glassfish:glassfish $glassfishdir
       su - glassfish
@@ -45,7 +43,7 @@ Vagrant.configure("2") do |config|
       /etc/init.d/GlassFish_domain1 start
 
     # variables del sistema
-      sleep 20
+      sleep 8
       sh /vagrant/crear_variables.sh
   SHELL
 end
