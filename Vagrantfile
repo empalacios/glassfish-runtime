@@ -14,6 +14,8 @@ Vagrant.configure("2") do |config|
 
     # java
       apt-get install -y openjdk-8-jdk-headless
+      cp /etc/java-8-openjdk/security/java.security /etc/java-8-openjdk/security/java.security.back
+      cp /vagrant/java.security /etc/java-8-openjdk/security/java.security
 
     # configurando apache para ser usado como proxy
       a2dissite 000-default
